@@ -13,7 +13,23 @@ class TesteController extends AbstractController
     */
     public function index() : Response
     {
-        return new Response('<h1>Página de teste!</h1>');
+        $data['titulo'] = 'Página de teste';
+        $data['mensagem'] = 'Aprendendo templates no Symfony';
+        $data['frutas'] = [
+            [ 
+                'nome' => 'banana',
+                'valor' => 1.99
+            ],
+            [ 
+                'nome' => 'laranja',
+                'valor' => 3.75
+            ],
+            [ 
+                'nome' => 'abacaxi',
+                'valor' => 2.00
+            ]
+        ];
+        return $this->render('teste/index.html.twig', $data);
     }
 
     /**
@@ -21,7 +37,9 @@ class TesteController extends AbstractController
      */
     public function detalhes($id) : Response
     {
-        return new Response('<h1>#' . $id . '</h1>');
+        $data['titulo'] = 'Página de detalhes';
+        $data['id'] = $id;
+        return $this->render('teste/detalhes.html.twig', $data);
     }
 
 }
